@@ -1,34 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Navbar from './components/layout/Navbar'
+import Sidebar from './components/layout/Sidebar'
+import Dashboard from './pages/Dashboard'
+import WasteManagement from './pages/WasteManagement'
+import CarbonTracking from './pages/CarbonTracking'
+import Community from './pages/Community'
+import Sharing from './pages/Sharing'
+import Analytics from './pages/Analytics'
+import Profile from './pages/Profile'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
+import Home from './pages/Home'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
+  // Apply dark mode
+  useEffect(() => {
+    document.documentElement.classList.add('dark')
+  }, [])
+
+  // Landing page layout (for non-authenticated users)
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    )
+  }
+
+  // App layout (for authenticated users)
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-dark-bg text-gray-200">
+      <Navbar />
+      <div className="flex pt-16 md:pt-0"> {/* Add padding for mobile navbar */}
+        <Sidebar />
+        <main className="flex-1 p-4 md:p-6 md:ml-64 pb-20 md:pb-6 mt-14"> {/* Add bottom padding for mobile nav */}
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/waste" element={<WasteManagement />} />
+            <Route path="/carbon" element={<CarbonTracking />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/sharing" element={<Sharing />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
