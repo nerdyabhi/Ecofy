@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema({
   preferences: {
     notifications: { type: Boolean, default: true },
     language: { type: String, default: 'en' }
-  }
+  },
+  passwordResetToken: String,
+  passwordResetExpires: Date
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

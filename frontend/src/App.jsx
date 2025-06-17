@@ -1,35 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
+import useStore from './stores/useStore';
+
+// Layout Components
+import Layout from './components/layout/Layout';
+import MobileLayout from './components/layout/MobileLayout';
+
+// Pages
+import LandingPage from './pages/LandingPage';
+import Dashboard from './pages/Dashboard';
+import WasteHub from './pages/WasteHub';
+import CarbonTracker from './pages/CarbonTracker';
+import CommunityIssues from './pages/CommunityIssues';
+import SharingEconomy from './pages/SharingEconomy';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
+// Hook to detect mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return isMobile;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isAuthenticated, initializeSampleData } = useStore();
+  const isMobile = useIsMobile();
+  
+  React.useEffect(() => {
+    // Initialize sample data on app load
+    initializeSampleData();
+  }, [initializeSampleData]);
+
+  const LayoutComponent = isMobile ? MobileLayout : Layout;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="min-h-screen bg-neutral-50">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          
+          {/* Protected Routes */}
+          <Route path="/app" element={<LayoutComponent />}>
+            <Route index element={<Dashboard />} />
+            <Route path="waste" element={<WasteHub />} />
+            <Route path="carbon" element={<CarbonTracker />} />
+            <Route path="community" element={<CommunityIssues />} />
+            <Route path="sharing" element={<SharingEconomy />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+        
+        {/* Toast notifications */}
+        <Toaster 
+          position="top-right" 
+          richColors 
+          closeButton
+          toastOptions={{
+            style: {
+              background: 'hsl(var(--background))',
+              color: 'hsl(var(--foreground))',
+              border: '1px solid hsl(var(--border))',
+            },
+          }}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-// import emailService from '../utils/emailService.js'; // Assuming you will create this
-// import crypto from 'crypto'; // For generating reset tokens
+import sendEmail from '../utils/emailService.js'; 
+import crypto from 'crypto'; 
 
 // User registration
 export const register = async (req, res) => {
@@ -81,7 +81,18 @@ export const login = async (req, res) => {
 export const getMe = async (req, res) => {
   try {
     // req.user is set by the auth middleware
-    const user = await User.findById(req.user.userId).select('-password');
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if(!token){
+         res.status(401).json({ message: 'No token, authorization denied' });
+         return;
+    }
+
+    const userId = jwt.verify(token, process.env.JWT_SECRET).userId;
+    if (!userId) {
+      return res.status(401).json({ message: 'Invalid token, authorization denied' });
+    }
+
+    const user = await User.findById(userId).select('-password');
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
@@ -94,20 +105,81 @@ export const getMe = async (req, res) => {
 
 // Forgot password
 export const forgotPassword = async (req, res) => {
-  // Placeholder: Implement password reset token generation and email sending
-  // 1. Find user by email
-  // 2. Generate a reset token (e.g., using crypto module)
-  // 3. Save token and expiry to user model (you might need to add fields to User model)
-  // 4. Send email with reset link (using emailService.js)
-  res.status(501).json({ message: 'Forgot password not implemented yet' });
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    user.passwordResetToken = crypto
+      .createHash('sha256')
+      .update(resetToken)
+      .digest('hex');
+    user.passwordResetExpires = Date.now() + 30 * 60 * 1000; // Token valid for 30 minutes
+
+    await user.save({ validateBeforeSave: false });
+
+    // Create reset URL
+    // Adjust the URL to your frontend's reset password page
+    const resetUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/api/auth/resetpassword/${resetToken}`;
+
+    const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl} \n\nIf you did not request this, please ignore this email and your password will remain unchanged.`;
+
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'Password Reset Token',
+        text: message,
+      });
+      res.status(200).json({ success: true, data: 'Email sent' });
+    } catch (err) {
+      console.error('Email sending error:', err);
+      user.passwordResetToken = undefined;
+      user.passwordResetExpires = undefined;
+      await user.save({ validateBeforeSave: false });
+      return res.status(500).json({ message: 'Email could not be sent' });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
 };
 
 // Reset password
 export const resetPassword = async (req, res) => {
-  // Placeholder: Implement password reset logic
-  // 1. Get token from req.params or req.body
-  // 2. Find user by reset token and check expiry
-  // 3. Hash new password
-  // 4. Update user's password and remove/invalidate reset token
-  res.status(501).json({ message: 'Reset password not implemented yet' });
+  try {
+    // Get hashed token
+    const passwordResetToken = crypto
+      .createHash('sha256')
+      .update(req.params.resettoken)
+      .digest('hex');
+
+    const user = await User.findOne({
+      passwordResetToken,
+      passwordResetExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid or expired token' });
+    }
+
+    // Set new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(req.body.password, salt);
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    // Send confirmation or login user directly
+    res.status(200).json({ success: true, data: 'Password reset successful' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
 };
