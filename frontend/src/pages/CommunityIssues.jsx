@@ -308,58 +308,57 @@ const CommunityIssues = () => {
             </DialogContent>
           </Dialog>
         </div>
-      </motion.div>
-
-      {/* Stats Cards */}
+      </motion.div>      {/* Stats Cards */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
-      >        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 border-purple-200 dark:border-purple-800">
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6"
+      >
+        <Card className="p-3 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 border-purple-200 dark:border-purple-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-purple-700 dark:text-purple-400">12</div>
-                <div className="text-sm text-purple-600 dark:text-purple-400">Issues Resolved</div>
+                <div className="text-lg font-bold text-purple-700 dark:text-purple-400">12</div>
+                <div className="text-xs text-purple-600 dark:text-purple-400">Issues Resolved</div>
               </div>
-              <CheckCircle className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              <CheckCircle className="w-6 h-6 text-purple-600 dark:text-purple-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
+        <Card className="p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">8</div>
-                <div className="text-sm text-blue-600 dark:text-blue-400">In Progress</div>
+                <div className="text-lg font-bold text-blue-700 dark:text-blue-400">8</div>
+                <div className="text-xs text-blue-600 dark:text-blue-400">In Progress</div>
               </div>
-              <Clock className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950/30 dark:to-amber-950/30 border-yellow-200 dark:border-yellow-800">
+        <Card className="p-3 bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950/30 dark:to-amber-950/30 border-yellow-200 dark:border-yellow-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">15</div>
-                <div className="text-sm text-yellow-600 dark:text-yellow-400">Reported</div>
+                <div className="text-lg font-bold text-yellow-700 dark:text-yellow-400">15</div>
+                <div className="text-xs text-yellow-600 dark:text-yellow-400">Reported</div>
               </div>
-              <AlertTriangle className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
+              <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
+        <Card className="p-3 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-green-700 dark:text-green-400">147</div>
-                <div className="text-sm text-green-600 dark:text-green-400">Community Votes</div>
+                <div className="text-lg font-bold text-green-700 dark:text-green-400">147</div>
+                <div className="text-xs text-green-600 dark:text-green-400">Community Votes</div>
               </div>
-              <Users className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <Users className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
           </CardContent>
         </Card>

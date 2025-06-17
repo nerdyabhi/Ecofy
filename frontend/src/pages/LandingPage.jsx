@@ -12,7 +12,9 @@ import {
   Star,
   TrendingUp,
   MapPin,
-  Award
+  Award,
+  Menu,
+  X
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
@@ -27,6 +29,8 @@ const LandingPage = () => {
     issuesResolved: 1876,
     itemsShared: 4521
   });
+
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   // Animate numbers on mount
   React.useEffect(() => {
@@ -94,11 +98,88 @@ const LandingPage = () => {
       content: "This platform makes it so easy to track carbon footprint and connect with like-minded people.",
       rating: 5
     }
-  ];
-  return (
+  ];  return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      {/* Theme Toggle - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Leaf className="w-8 h-8 text-green-500 mr-3" />
+              <span className="text-xl font-bold text-gray-900 dark:text-white">Ecofy</span>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Features</a>
+              <a href="#how-it-works" className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">How it Works</a>
+              <a href="#testimonials" className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Testimonials</a>
+              <Link to="/login" className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Sign In</Link>
+              <Button asChild size="sm" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white">
+                <Link to="/register">Get Started</Link>
+              </Button>
+            </div>
+              {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center space-x-2">
+              <ThemeToggle />
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md"
+            >
+              <div className="px-4 py-4 space-y-4">
+                <a 
+                  href="#features" 
+                  className="block text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Features
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  className="block text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  How it Works
+                </a>
+                <a 
+                  href="#testimonials" 
+                  className="block text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Testimonials
+                </a>
+                <Link 
+                  to="/login" 
+                  className="block text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Button asChild className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white">
+                  <Link to="/register" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </nav>
+      
+      {/* Theme Toggle - Fixed Position (Desktop Only) */}
+      <div className="hidden md:block fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
       
@@ -149,8 +230,7 @@ const LandingPage = () => {
         </div>
 
         <div className="relative z-10 w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-screen py-20 lg:py-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-screen py-20 lg:py-0">
               
               {/* Left Column - Content */}
               <div className="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-6">
@@ -159,7 +239,7 @@ const LandingPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   className="space-y-4 sm:space-y-6"
-                >                  {/* Badge */}
+                >{/* Badge */}
                   <motion.div 
                     className="inline-flex items-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-green-700 dark:text-green-300 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-sm border border-green-200/50 dark:border-green-600/50"
                     initial={{ scale: 0 }}
@@ -169,10 +249,9 @@ const LandingPage = () => {
                     <Leaf className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1.5 sm:mr-2 text-green-600 dark:text-green-400" />
                     Building Sustainable Communities
                   </motion.div>
-                  
-                  {/* Main Heading - Better mobile dark mode */}
+                    {/* Main Heading - Enhanced mobile experience */}
                   <motion.h1 
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 dark:text-white px-2 sm:px-0"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white px-2 sm:px-0"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
@@ -209,9 +288,7 @@ const LandingPage = () => {
                         Sign In
                       </Link>
                     </Button>
-                  </motion.div>
-
-                  {/* Trust Indicators - Mobile dark mode friendly */}
+                  </motion.div>                  {/* Trust Indicators - Mobile dark mode friendly */}
                   <motion.div 
                     className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400 px-2 sm:px-0"
                     initial={{ opacity: 0 }}
@@ -231,25 +308,126 @@ const LandingPage = () => {
                       2 min setup
                     </div>
                   </motion.div>
+
+                  {/* Mobile Circular Element - Directly below hero text */}
+                  <motion.div 
+                    className="lg:hidden flex justify-center mt-8 sm:mt-12"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.1, duration: 1 }}
+                  >
+                    <div className="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto">
+                      {/* Background Glow */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-2xl opacity-20 dark:opacity-30 animate-pulse"></div>
+                      
+                      {/* Main Circle */}
+                      <div className="relative w-full h-full bg-gradient-to-br from-white/90 to-green-50/90 dark:from-gray-800/90 dark:to-green-900/30 rounded-full border border-green-200/50 dark:border-green-700/30 backdrop-blur-sm shadow-xl flex items-center justify-center">
+                        
+                        {/* Feature Icons - Mobile optimized */}
+                        <motion.div
+                          className="absolute top-3 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-md"
+                          animate={{ 
+                            y: [0, -5, 0],
+                            rotate: [0, 5, 0]
+                          }}
+                          transition={{ 
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <Recycle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        </motion.div>
+
+                        <motion.div
+                          className="absolute top-1/2 right-3 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-md flex items-center justify-center shadow-md"
+                          animate={{ 
+                            x: [0, 5, 0],
+                            rotate: [0, -5, 0]
+                          }}
+                          transition={{ 
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1
+                          }}
+                        >
+                          <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                        </motion.div>
+
+                        <motion.div
+                          className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-purple-500 to-violet-600 rounded-lg flex items-center justify-center shadow-md"
+                          animate={{ 
+                            y: [0, 5, 0],
+                            rotate: [0, -5, 0]
+                          }}
+                          transition={{ 
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 2
+                          }}
+                        >
+                          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        </motion.div>
+
+                        <motion.div
+                          className="absolute top-1/2 left-3 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-md flex items-center justify-center shadow-md"
+                          animate={{ 
+                            x: [0, -5, 0],
+                            rotate: [0, 5, 0]
+                          }}
+                          transition={{ 
+                            duration: 4.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.5
+                          }}
+                        >
+                          <Share2 className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                        </motion.div>
+
+                        {/* Center Content */}
+                        <div className="text-center">
+                          <motion.div
+                            className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-2 shadow-lg mx-auto"
+                            animate={{ 
+                              scale: [1, 1.1, 1],
+                              rotate: [0, 360]
+                            }}
+                            transition={{ 
+                              duration: 10,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                          >
+                            <Leaf className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                          </motion.div>
+                          <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Eco Platform
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </div>              {/* Right Column - Visual Elements - Mobile Optimized */}
-              <div className="lg:col-span-5 relative mt-8 lg:mt-0 order-first lg:order-last">
+              </div>              {/* Right Column - Visual Elements - Hidden on Mobile, Visible on Desktop */}
+              <div className="hidden lg:block lg:col-span-5 relative mt-8 lg:mt-0">
                 <motion.div
                   className="relative"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 1 }}
                 >
-                  {/* Main Circle - Responsive sizing */}
-                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto">
+                  {/* Main Circle - Desktop Only */}
+                  <div className="relative w-96 h-96 mx-auto">
                     {/* Background Glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
                       {/* Main Circle - Better mobile dark mode */}
                     <div className="relative w-full h-full bg-gradient-to-br from-white/90 to-green-50/90 dark:from-gray-800/90 dark:to-green-900/30 rounded-full border border-green-200/50 dark:border-green-700/30 backdrop-blur-sm shadow-2xl flex items-center justify-center">
-                      
-                      {/* Feature Icons - Mobile responsive */}
+                        {/* Feature Icons - Desktop Only */}
                       <motion.div
-                        className="absolute top-4 sm:top-8 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+                        className="absolute top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg"
                         animate={{ 
                           y: [0, -10, 0],
                           rotate: [0, 5, 0]
@@ -260,11 +438,11 @@ const LandingPage = () => {
                           ease: "easeInOut"
                         }}
                       >
-                        <Recycle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                        <Recycle className="w-8 h-8 text-white" />
                       </motion.div>
 
                       <motion.div
-                        className="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg"
+                        className="absolute top-1/2 right-8 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg"
                         animate={{ 
                           x: [0, 10, 0],
                           rotate: [0, -5, 0]
@@ -276,11 +454,11 @@ const LandingPage = () => {
                           delay: 1
                         }}
                       >
-                        <BarChart3 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                        <BarChart3 className="w-7 h-7 text-white" />
                       </motion.div>
 
                       <motion.div
-                        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+                        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg"
                         animate={{ 
                           y: [0, 10, 0],
                           rotate: [0, -5, 0]
@@ -292,11 +470,11 @@ const LandingPage = () => {
                           delay: 2
                         }}
                       >
-                        <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                        <Users className="w-8 h-8 text-white" />
                       </motion.div>
 
                       <motion.div
-                        className="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg"
+                        className="absolute top-1/2 left-8 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg"
                         animate={{ 
                           x: [0, -10, 0],
                           rotate: [0, 5, 0]
@@ -308,13 +486,13 @@ const LandingPage = () => {
                           delay: 0.5
                         }}
                       >
-                        <Share2 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                        <Share2 className="w-7 h-7 text-white" />
                       </motion.div>
 
                       {/* Center Content */}
                       <div className="text-center">
                         <motion.div
-                          className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mb-3 sm:mb-4 shadow-xl mx-auto"
+                          className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mb-4 shadow-xl mx-auto"
                           animate={{ 
                             scale: [1, 1.1, 1],
                             rotate: [0, 360]
@@ -488,9 +666,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>      {/* Solution/Features Section */}
-      <section className="py-20 bg-white dark:bg-neutral-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+      <section id="features" className="py-20 bg-white dark:bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -498,8 +675,7 @@ const LandingPage = () => {
           >
             <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
               One Platform, Four Solutions
-            </h2>
-            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
+            </h2>            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto mb-8">
               Ecofy integrates essential sustainability tools into a unified platform 
               that makes environmental action accessible, trackable, and rewarding.
             </p>
@@ -531,7 +707,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>      {/* How It Works */}
-      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950/30 dark:to-emerald-950/30">
+      <section id="how-it-works" className="py-20 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950/30 dark:to-emerald-950/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"

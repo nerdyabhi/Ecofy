@@ -32,21 +32,19 @@ const MobileLayout = () => {
     { name: 'Share', href: '/app/sharing', icon: Share2 },
   ];
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Top bar */}
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">      {/* Top bar */}
       <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Leaf className="w-6 h-6 text-green-500 mr-2" />
-            <span className="text-lg font-bold text-neutral-900">Ecofy</span>
+            <span className="text-lg font-bold text-gray-900 dark:text-white">Ecofy</span>
           </div>
-          
-          <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="sm">
+            <div className="flex items-center space-x-3">
+            <Button variant="ghost" size="sm" className="text-gray-900 dark:text-white">
               <Search className="w-5 h-5" />
             </Button>
             
-            <Button variant="ghost" size="sm" className="relative">
+            <Button variant="ghost" size="sm" className="relative text-gray-900 dark:text-white">
               <Bell className="w-5 h-5" />
               {unreadCount > 0 && (
                 <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 bg-red-500 text-white text-xs">
@@ -73,7 +71,7 @@ const MobileLayout = () => {
                 className={`flex flex-col items-center justify-center px-3 py-2 rounded-lg transition-colors ${
                   isActive
                     ? 'text-green-600 bg-green-50 dark:bg-green-900/20'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    : 'text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
                 <item.icon className="w-5 h-5 mb-1" />
