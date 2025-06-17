@@ -6,6 +6,7 @@ import useStore from './stores/useStore';
 // Layout Components
 import Layout from './components/layout/Layout';
 import MobileLayout from './components/layout/MobileLayout';
+import ThemeProvider from './components/ThemeProvider';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -43,40 +44,42 @@ function App() {
   const LayoutComponent = isMobile ? MobileLayout : Layout;
 
   return (
-    <Router>
-      <div className="min-h-screen bg-neutral-50">
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            {/* Protected Routes */}
+            <Route path="/app" element={<LayoutComponent />}>
+              <Route index element={<Dashboard />} />
+              <Route path="waste" element={<WasteHub />} />
+              <Route path="carbon" element={<CarbonTracker />} />
+              <Route path="community" element={<CommunityIssues />} />
+              <Route path="sharing" element={<SharingEconomy />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+          </Routes>
           
-          {/* Protected Routes */}
-          <Route path="/app" element={<LayoutComponent />}>
-            <Route index element={<Dashboard />} />
-            <Route path="waste" element={<WasteHub />} />
-            <Route path="carbon" element={<CarbonTracker />} />
-            <Route path="community" element={<CommunityIssues />} />
-            <Route path="sharing" element={<SharingEconomy />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
-        </Routes>
-        
-        {/* Toast notifications */}
-        <Toaster 
-          position="top-right" 
-          richColors 
-          closeButton
-          toastOptions={{
-            style: {
-              background: 'hsl(var(--background))',
-              color: 'hsl(var(--foreground))',
-              border: '1px solid hsl(var(--border))',
-            },
-          }}
-        />
-      </div>
-    </Router>
+          {/* Toast notifications */}
+          <Toaster 
+            position="top-right" 
+            richColors 
+            closeButton
+            toastOptions={{
+              style: {
+                background: 'hsl(var(--background))',
+                color: 'hsl(var(--foreground))',
+                border: '1px solid hsl(var(--border))',
+              },
+            }}
+          />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

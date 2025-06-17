@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
+import ThemeToggle from '../ThemeToggle';
 import useStore from '../../stores/useStore';
 
 const Layout = () => {
@@ -34,15 +35,14 @@ const Layout = () => {
     { name: 'Community', href: '/app/community', icon: Users },
     { name: 'Sharing', href: '/app/sharing', icon: Share2 },
   ];
-
   return (
-    <div className="flex h-screen bg-neutral-50">
+    <div className="flex h-screen bg-neutral-50 dark:bg-neutral-900">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200">
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-neutral-800 shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+        <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center">
             <Leaf className="w-8 h-8 text-green-500 mr-2" />
-            <span className="text-xl font-bold text-neutral-900">Ecofy</span>
+            <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Ecofy</span>
           </div>
           <Button
             variant="ghost"
@@ -53,8 +53,7 @@ const Layout = () => {
             <X className="w-5 h-5" />
           </Button>
         </div>
-        
-        <nav className="mt-6 px-3">
+          <nav className="mt-6 px-3">
           {navigation.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -63,8 +62,8 @@ const Layout = () => {
                 to={item.href}
                 className={`flex items-center px-3 py-3 mt-1 text-sm font-medium rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-green-50 text-green-700 border-r-2 border-green-500'
-                    : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
+                    ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-r-2 border-green-500'
+                    : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-neutral-100'
                 }`}
                 onClick={() => setIsSidebarOpen(false)}
               >
@@ -76,19 +75,19 @@ const Layout = () => {
         </nav>
         
         {/* User Profile Section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-neutral-200">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-neutral-200 dark:border-neutral-700">
           <Link
             to="/app/profile"
-            className="flex items-center p-3 rounded-lg hover:bg-neutral-50 transition-colors"
+            className="flex items-center p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
           >
             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
               {user?.name?.charAt(0) || 'U'}
             </div>
             <div className="ml-3 flex-1 min-w-0">
-              <div className="text-sm font-medium text-neutral-900 truncate">
+              <div className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
                 {user?.name || 'User'}
               </div>
-              <div className="text-xs text-neutral-500 truncate">
+              <div className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
                 {user?.email || 'user@example.com'}
               </div>
             </div>
@@ -97,9 +96,8 @@ const Layout = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
-        {/* Top bar */}
-        <header className="bg-white shadow-sm border-b border-neutral-200">
+      <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">        {/* Top bar */}
+        <header className="bg-white dark:bg-neutral-800 shadow-sm border-b border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center justify-between h-16 px-4 sm:px-6">
             <div className="flex items-center">
               <Button
@@ -116,12 +114,14 @@ const Layout = () => {
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="hidden sm:block w-64 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="hidden sm:block w-64 px-3 py-2 border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 />
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              
               <Button variant="ghost" size="sm" className="relative">
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
@@ -141,7 +141,7 @@ const Layout = () => {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-neutral-50">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-neutral-50 dark:bg-neutral-900">
           <Outlet />
         </main>
       </div>

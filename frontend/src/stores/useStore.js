@@ -45,10 +45,16 @@ const useStore = create(
       notifications: [],
       unreadCount: 0,
 
+      // Theme
+      isDarkMode: false,
+
       // Actions
       setUser: (user) => set({ user, isAuthenticated: !!user }),
       logout: () => set({ user: null, isAuthenticated: false }),
       
+      toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })),
+      setDarkMode: (isDark) => set({ isDarkMode: isDark }),
+
       updateStats: (newStats) => set((state) => ({
         stats: { ...state.stats, ...newStats }
       })),
@@ -102,6 +108,7 @@ const useStore = create(
         ecoPoints: state.ecoPoints,
         carbonScore: state.carbonScore,
         trustScore: state.trustScore,
+        isDarkMode: state.isDarkMode,
       }),
     }
   )

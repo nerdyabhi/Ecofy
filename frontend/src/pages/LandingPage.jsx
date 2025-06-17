@@ -17,7 +17,8 @@ import {
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { BackgroundBeamsWithCollision } from '../components/ui/background-beams-with-collision';
-import { BackgroundGrid } from '../components/ui/backgroundGrid'; // Updated import
+import { BackgroundGrid } from '../components/ui/backgroundGrid';
+import ThemeToggle from '../components/ThemeToggle';
 
 const LandingPage = () => {
   const [currentStats, setCurrentStats] = React.useState({
@@ -96,27 +97,31 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-white dark:bg-neutral-900 transition-colors duration-200">
+      {/* Theme Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
 
+      {/* Hero Section */}
       <section className="relative min-h-screen bg-transparent flex items-center justify-center overflow-hidden">
-      <BackgroundGrid >
+      <BackgroundGrid />
 
         <div className="relative z-10 w-full">
           <BackgroundBeamsWithCollision>
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-transparent">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="inline-flex items-center bg-transparent text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-md">
+                <div className="inline-flex items-center bg-green-100/80 backdrop-blur-sm dark:bg-green-900/80 text-green-800 dark:text-green-100 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-md">
                   <Leaf className="w-4 h-4 mr-2" />
                   Building Sustainable Communities Together
                 </div>
                 
                 
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-neutral-800 mb-6">
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
                   Transform Your
                   <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
                     {' '}Community
@@ -125,7 +130,7 @@ const LandingPage = () => {
                   Into a Sustainable Future
                 </h1>
                 
-                <p className="text-xl sm:text-2xl text-neutral-600 mb-8 max-w-3xl mx-auto">
+                <p className="text-xl sm:text-2xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-3xl mx-auto">
                   Join thousands of citizens making real environmental impact through smart waste management, 
                   carbon tracking, community reporting, and resource sharing.
                 </p>
@@ -136,22 +141,19 @@ const LandingPage = () => {
                       Start Your Journey <ArrowRight className="ml-2 w-5 h-5" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 text-lg">
+                  <Button asChild variant="outline" size="lg" className="border-neutral-700 dark:border-neutral-300 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-700 hover:text-white dark:hover:bg-neutral-200 dark:hover:text-neutral-800 px-8 py-4 text-lg">
                     <Link to="/login">
                       Sign In
                     </Link>
                   </Button>
                 </div>
               </motion.div>
-            </div>
-          </BackgroundBeamsWithCollision>
+            </div>          </BackgroundBeamsWithCollision>
         </div>
-        </BackgroundGrid >
       </section>
 
-
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-emerald-50">
+      <section className="py-16 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div 
@@ -160,10 +162,10 @@ const LandingPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">
+              <div className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
                 {currentStats.users.toLocaleString()}+
               </div>
-              <div className="text-neutral-600">Active Users</div>
+              <div className="text-neutral-600 dark:text-neutral-300">Active Users</div>
             </motion.div>
             
             <motion.div 
@@ -173,10 +175,10 @@ const LandingPage = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">
+              <div className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
                 {currentStats.carbonSaved.toFixed(1)}T
               </div>
-              <div className="text-neutral-600">CO₂ Saved</div>
+              <div className="text-neutral-600 dark:text-neutral-300">CO₂ Saved</div>
             </motion.div>
             
             <motion.div 
@@ -186,30 +188,27 @@ const LandingPage = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">
+              <div className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
                 {currentStats.issuesResolved.toLocaleString()}
               </div>
-              <div className="text-neutral-600">Issues Resolved</div>
+              <div className="text-neutral-600 dark:text-neutral-300">Issues Resolved</div>
             </motion.div>
-            
-            <motion.div 
+              <motion.div 
               className="text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">
+              <div className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
                 {currentStats.itemsShared.toLocaleString()}
               </div>
-              <div className="text-neutral-600">Items Shared</div>
+              <div className="text-neutral-600 dark:text-neutral-300">Items Shared</div>
             </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* Problem Section */}
-      <section className="py-20 bg-neutral-900 text-white">
+      </section>      {/* Problem Section */}
+      <section className="py-20 bg-neutral-900 dark:bg-neutral-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -269,10 +268,8 @@ const LandingPage = () => {
             </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* Solution/Features Section */}
-      <section className="py-20 bg-white">
+      </section>      {/* Solution/Features Section */}
+      <section className="py-20 bg-white dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -280,10 +277,10 @@ const LandingPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 mb-6">
+            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
               One Platform, Four Solutions
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
               Ecofy integrates essential sustainability tools into a unified platform 
               that makes environmental action accessible, trackable, and rewarding.
             </p>
@@ -297,16 +294,15 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-              >
-                <Card className="p-6 h-full hover:shadow-lg transition-shadow border-0 bg-gradient-to-br from-white to-neutral-50">
+              >                <Card className="p-6 h-full hover:shadow-lg transition-shadow border-0 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-700">
                   <CardContent className="p-0">
                     <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center text-white mb-4`}>
                       {feature.icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+                    <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-neutral-600 text-lg">
+                    <p className="text-neutral-600 dark:text-neutral-300 text-lg">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -315,10 +311,8 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-100">
+      </section>      {/* How It Works */}
+      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950/30 dark:to-emerald-950/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -326,11 +320,11 @@ const LandingPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 mb-6">
+            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
               How It Works
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Get started with Ecofy in four simple steps and begin making a 
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
+              Get started with Ecofy in four simple steps and begin making a
               measurable impact on your community's sustainability.
             </p>
           </motion.div>
@@ -347,32 +341,28 @@ const LandingPage = () => {
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
                   {step.number}
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                </div>                <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-neutral-600">
+                <p className="text-neutral-600 dark:text-neutral-300">
                   {step.description}
                 </p>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
+      </section>      {/* Testimonials */}
+      <section className="py-20 bg-white dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 mb-6">
+          >            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
               Real Impact, Real Stories
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
               See how communities around the world are using Ecofy to create 
               lasting environmental change.
             </p>
@@ -387,21 +377,20 @@ const LandingPage = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-6 h-full border-0 shadow-lg">
+                <Card className="p-6 h-full border-0 shadow-lg bg-white dark:bg-neutral-800">
                   <CardContent className="p-0">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
                       ))}
-                    </div>
-                    <p className="text-neutral-600 mb-6 italic">
+                    </div>                    <p className="text-neutral-600 dark:text-neutral-300 mb-6 italic">
                       "{testimonial.content}"
                     </p>
                     <div>
-                      <div className="font-semibold text-neutral-900">
+                      <div className="font-semibold text-neutral-900 dark:text-neutral-100">
                         {testimonial.name}
                       </div>
-                      <div className="text-sm text-neutral-500">
+                      <div className="text-sm text-neutral-500 dark:text-neutral-400">
                         {testimonial.role}
                       </div>
                     </div>

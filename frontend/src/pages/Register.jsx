@@ -8,6 +8,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
+import ThemeToggle from '../components/ThemeToggle';
 import useStore from '../stores/useStore';
 
 const Register = () => {
@@ -58,9 +59,13 @@ const Register = () => {
     'Earn eco-points and achievements',
     'Join sustainability challenges'
   ];
-
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-neutral-50 dark:bg-neutral-900">
+      {/* Theme Toggle */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      
       {/* Left side - Background */}
       <div className="hidden lg:flex flex-1 bg-gradient-to-br from-emerald-400 via-green-500 to-teal-600 items-center justify-center p-8">
         <motion.div
@@ -103,16 +108,15 @@ const Register = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="w-full max-w-md"
-        >
-          <div className="text-center mb-8">
+        >          <div className="text-center mb-8">
             <Link to="/" className="inline-flex items-center mb-6">
               <Leaf className="w-8 h-8 text-green-500 mr-2" />
-              <span className="text-2xl font-bold text-neutral-900">Ecofy</span>
+              <span className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Ecofy</span>
             </Link>
-            <h1 className="text-3xl font-bold text-neutral-900 mb-2">
+            <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
               Create Account
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-neutral-600 dark:text-neutral-300">
               Join the sustainability movement today
             </p>
           </div>

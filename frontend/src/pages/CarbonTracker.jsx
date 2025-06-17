@@ -203,12 +203,11 @@ const CarbonTracker = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
               Carbon Footprint Tracker
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-neutral-600 dark:text-neutral-300">
               Monitor and reduce your environmental impact daily
             </p>
           </div>
@@ -307,64 +306,62 @@ const CarbonTracker = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
-      >
-        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+      >        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between mb-2">
-              <TrendingDown className="w-8 h-8 text-green-600" />
-              <Badge className="bg-green-100 text-green-700">
+              <TrendingDown className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <Badge className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300">
                 -12% this week
               </Badge>
             </div>
-            <div className="text-2xl font-bold text-green-700 mb-1">
+            <div className="text-2xl font-bold text-green-700 dark:text-green-400 mb-1">
               45.8kg
             </div>
-            <div className="text-sm text-green-600">CO₂ Saved</div>
+            <div className="text-sm text-green-600 dark:text-green-400">CO₂ Saved</div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between mb-2">
-              <BarChart3 className="w-8 h-8 text-blue-600" />
-              <Badge className="bg-blue-100 text-blue-700">
+              <BarChart3 className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <Badge className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300">
                 Today: 8.4kg
               </Badge>
             </div>
-            <div className="text-2xl font-bold text-blue-700 mb-1">
+            <div className="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-1">
               176kg
             </div>
-            <div className="text-sm text-blue-600">Monthly Emissions</div>
+            <div className="text-sm text-blue-600 dark:text-blue-400">Monthly Emissions</div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 border-purple-200 dark:border-purple-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between mb-2">
-              <Target className="w-8 h-8 text-purple-600" />
-              <Badge className="bg-purple-100 text-purple-700">
+              <Target className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              <Badge className="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300">
                 On track
               </Badge>
             </div>
-            <div className="text-2xl font-bold text-purple-700 mb-1">
+            <div className="text-2xl font-bold text-purple-700 dark:text-purple-400 mb-1">
               75%
-            </div>
-            <div className="text-sm text-purple-600">Goal Progress</div>
+            </div>            <div className="text-sm text-purple-600 dark:text-purple-400">Goal Progress</div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200 dark:border-amber-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between mb-2">
-              <Award className="w-8 h-8 text-amber-600" />
-              <Badge className="bg-amber-100 text-amber-700">
+              <Award className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              <Badge className="bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
                 +15 today
               </Badge>
             </div>
-            <div className="text-2xl font-bold text-amber-700 mb-1">
+            <div className="text-2xl font-bold text-amber-700 dark:text-amber-400 mb-1">
               28
             </div>
-            <div className="text-sm text-amber-600">Logged Activities</div>
+            <div className="text-sm text-amber-600 dark:text-amber-400">Logged Activities</div>
           </CardContent>
         </Card>
       </motion.div>
@@ -378,9 +375,8 @@ const CarbonTracker = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle>Weekly Carbon Footprint</CardTitle>
+            <Card>              <CardHeader>
+                <CardTitle className="text-neutral-900 dark:text-neutral-100">Weekly Carbon Footprint</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -415,9 +411,8 @@ const CarbonTracker = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle>Monthly Emission Trends</CardTitle>
+            <Card>              <CardHeader>
+                <CardTitle className="text-neutral-900 dark:text-neutral-100">Monthly Emission Trends</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -439,9 +434,8 @@ const CarbonTracker = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle>Emissions by Category</CardTitle>
+            <Card>              <CardHeader>
+                <CardTitle className="text-neutral-900 dark:text-neutral-100">Emissions by Category</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -476,9 +470,8 @@ const CarbonTracker = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
+            <Card>              <CardHeader>
+                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
                   <Calendar className="w-5 h-5 mr-2" />
                   Recent Activities
                 </CardTitle>
@@ -491,21 +484,21 @@ const CarbonTracker = () => {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 + index * 0.1 }}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors"
+                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                     >
                       <div className={`p-2 rounded-lg bg-gradient-to-r ${activityTypes.find(t => t.value === activity.type)?.color || 'from-gray-400 to-gray-500'} text-white`}>
                         {activity.icon}
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-neutral-900">
+                        <div className="font-medium text-neutral-900 dark:text-neutral-100">
                           {activity.description}
                         </div>
-                        <div className="text-sm text-neutral-500">
+                        <div className="text-sm text-neutral-500 dark:text-neutral-400">
                           {activity.date}
                         </div>
                       </div>
                       <Badge 
-                        className={activity.impact < 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}
+                        className={activity.impact < 0 ? 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300' : 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300'}
                       >
                         {activity.impact < 0 ? '' : '+'}{activity.impact}kg CO₂
                       </Badge>
@@ -556,9 +549,8 @@ const CarbonTracker = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
+            <Card>              <CardHeader>
+                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
                   <TrendingDown className="w-5 h-5 mr-2" />
                   Recommendations
                 </CardTitle>
@@ -571,21 +563,21 @@ const CarbonTracker = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9 + index * 0.1 }}
-                      className="p-3 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                      className="p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-medium text-neutral-900">{rec.title}</h4>
+                        <h4 className="font-medium text-neutral-900 dark:text-neutral-100">{rec.title}</h4>
                         <div className="flex gap-1">
                           <Badge 
                             variant="outline" 
-                            className={rec.impact === 'High' ? 'border-green-500 text-green-700' : 'border-yellow-500 text-yellow-700'}
+                            className={rec.impact === 'High' ? 'border-green-500 text-green-700 dark:text-green-300' : 'border-yellow-500 text-yellow-700 dark:text-yellow-300'}
                           >
                             {rec.impact}
                           </Badge>
                         </div>
                       </div>
-                      <p className="text-sm text-neutral-600 mb-2">{rec.description}</p>
-                      <div className="text-xs text-neutral-500">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-2">{rec.description}</p>
+                      <div className="text-xs text-neutral-500 dark:text-neutral-400">
                         Difficulty: {rec.difficulty}
                       </div>
                     </motion.div>

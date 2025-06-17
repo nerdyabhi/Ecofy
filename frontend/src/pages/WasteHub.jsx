@@ -36,15 +36,14 @@ const WasteHub = () => {
     description: '',
     image: null
   });
-
   const categories = [
     { value: 'all', label: 'All Categories' },
-    { value: 'plastic', label: 'Plastic', color: 'bg-blue-100 text-blue-800' },
-    { value: 'paper', label: 'Paper', color: 'bg-green-100 text-green-800' },
-    { value: 'metal', label: 'Metal', color: 'bg-yellow-100 text-yellow-800' },
-    { value: 'glass', label: 'Glass', color: 'bg-purple-100 text-purple-800' },
-    { value: 'electronic', label: 'Electronics', color: 'bg-red-100 text-red-800' },
-    { value: 'organic', label: 'Organic', color: 'bg-emerald-100 text-emerald-800' }
+    { value: 'plastic', label: 'Plastic', color: 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300' },
+    { value: 'paper', label: 'Paper', color: 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300' },
+    { value: 'metal', label: 'Metal', color: 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300' },
+    { value: 'glass', label: 'Glass', color: 'bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300' },
+    { value: 'electronic', label: 'Electronics', color: 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300' },
+    { value: 'organic', label: 'Organic', color: 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300' }
   ];
 
   const mockWasteItems = [
@@ -140,17 +139,16 @@ const WasteHub = () => {
       image: null
     });
   };
-
   const getStatusColor = (status) => {
     switch (status) {
       case 'collected':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300';
       case 'scheduled':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300';
     }
   };
 
@@ -178,13 +176,12 @@ const WasteHub = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
-      >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      >        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
               Waste Management Hub
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-neutral-600 dark:text-neutral-300">
               Smart waste categorization and recycler connections
             </p>
           </div>
@@ -268,51 +265,49 @@ const WasteHub = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
-      >
-        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+      >        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-green-700">25.5</div>
-                <div className="text-sm text-green-600">kg Recycled</div>
+                <div className="text-2xl font-bold text-green-700 dark:text-green-400">25.5</div>
+                <div className="text-sm text-green-600 dark:text-green-400">kg Recycled</div>
               </div>
-              <Recycle className="w-8 h-8 text-green-600" />
+              <Recycle className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-blue-700">$127.50</div>
-                <div className="text-sm text-blue-600">Total Earned</div>
+                <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">$127.50</div>
+                <div className="text-sm text-blue-600 dark:text-blue-400">Total Earned</div>
               </div>
-              <DollarSign className="w-8 h-8 text-blue-600" />
+              <DollarSign className="w-8 h-8 text-blue-600 dark:text-blue-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 border-purple-200 dark:border-purple-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-purple-700">18</div>
-                <div className="text-sm text-purple-600">Items Processed</div>
+                <div className="text-2xl font-bold text-purple-700 dark:text-purple-400">18</div>                <div className="text-sm text-purple-600 dark:text-purple-400">Items Processed</div>
               </div>
-              <Calendar className="w-8 h-8 text-purple-600" />
+              <Calendar className="w-8 h-8 text-purple-600 dark:text-purple-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200 dark:border-amber-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-amber-700">3</div>
-                <div className="text-sm text-amber-600">Pending Pickups</div>
+                <div className="text-2xl font-bold text-amber-700 dark:text-amber-400">3</div>
+                <div className="text-sm text-amber-600 dark:text-amber-400">Pending Pickups</div>
               </div>
-              <Truck className="w-8 h-8 text-amber-600" />
+              <Truck className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
           </CardContent>
         </Card>
@@ -372,9 +367,8 @@ const WasteHub = () => {
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-neutral-900">
+                      <div className="flex-1">                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                             {item.name}
                           </h3>
                           <Badge className={categories.find(c => c.value === item.category)?.color || 'bg-gray-100 text-gray-800'}>
@@ -385,7 +379,7 @@ const WasteHub = () => {
                             <span className="ml-1 capitalize">{item.status}</span>
                           </Badge>
                         </div>
-                        <div className="text-sm text-neutral-600 space-y-1">
+                        <div className="text-sm text-neutral-600 dark:text-neutral-300 space-y-1">
                           <div>Weight: {item.weight} kg</div>
                           <div>Estimated Value: ${item.estimatedValue}</div>
                           <div>Date: {new Date(item.date).toLocaleDateString()}</div>
@@ -420,9 +414,8 @@ const WasteHub = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
+            <Card>              <CardHeader>
+                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
                   <MapPin className="w-5 h-5 mr-2" />
                   Nearby Recyclers
                 </CardTitle>
@@ -434,16 +427,15 @@ const WasteHub = () => {
                       key={recycler.id}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                      className="p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                      transition={{ delay: 0.6 + index * 0.1 }}                      className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-semibold text-neutral-900">{recycler.name}</h4>
-                        <div className="flex items-center text-sm text-amber-600">
+                        <h4 className="font-semibold text-neutral-900 dark:text-neutral-100">{recycler.name}</h4>
+                        <div className="flex items-center text-sm text-amber-600 dark:text-amber-400">
                           ⭐ {recycler.rating}
                         </div>
                       </div>
-                      <div className="text-sm text-neutral-600 space-y-1">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-300 space-y-1">
                         <div className="flex items-center">
                           <MapPin className="w-3 h-3 mr-1" />
                           {recycler.location} • {recycler.distance}
@@ -471,13 +463,12 @@ const WasteHub = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
             className="mt-6"
-          >
-            <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+          >            <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
               <CardHeader>
-                <CardTitle className="text-green-800">💡 Quick Tips</CardTitle>
+                <CardTitle className="text-green-800 dark:text-green-300">💡 Quick Tips</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="text-sm text-green-700 space-y-2">
+                <ul className="text-sm text-green-700 dark:text-green-300 space-y-2">
                   <li>• Clean containers before recycling</li>
                   <li>• Remove labels when possible</li>
                   <li>• Separate different materials</li>

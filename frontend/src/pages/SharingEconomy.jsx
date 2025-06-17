@@ -42,16 +42,15 @@ const SharingEconomy = () => {
     location: '',
     image: null
   });
-
   const categories = [
     { value: 'all', label: 'All Categories' },
-    { value: 'tools', label: 'Tools & Equipment', color: 'bg-blue-100 text-blue-800' },
-    { value: 'appliances', label: 'Appliances', color: 'bg-green-100 text-green-800' },
-    { value: 'books', label: 'Books & Media', color: 'bg-purple-100 text-purple-800' },
-    { value: 'sports', label: 'Sports & Recreation', color: 'bg-orange-100 text-orange-800' },
-    { value: 'electronics', label: 'Electronics', color: 'bg-red-100 text-red-800' },
-    { value: 'garden', label: 'Garden & Outdoor', color: 'bg-emerald-100 text-emerald-800' },
-    { value: 'other', label: 'Other', color: 'bg-gray-100 text-gray-800' }
+    { value: 'tools', label: 'Tools & Equipment', color: 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300' },
+    { value: 'appliances', label: 'Appliances', color: 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300' },
+    { value: 'books', label: 'Books & Media', color: 'bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300' },
+    { value: 'sports', label: 'Sports & Recreation', color: 'bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300' },
+    { value: 'electronics', label: 'Electronics', color: 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300' },
+    { value: 'garden', label: 'Garden & Outdoor', color: 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300' },
+    { value: 'other', label: 'Other', color: 'bg-gray-100 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300' }
   ];
 
   const mockItems = [
@@ -179,30 +178,29 @@ const SharingEconomy = () => {
       image: null
     });
   };
-
   const getConditionColor = (condition) => {
     switch (condition) {
       case 'excellent':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300';
       case 'good':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300';
       case 'fair':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300';
     }
   };
 
   const getRequestStatusColor = (status) => {
     switch (status) {
       case 'approved':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
       case 'declined':
-        return 'bg-red-100 text-red-800';
+        return 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300';
     }
   };
 
@@ -218,12 +216,11 @@ const SharingEconomy = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
               Sharing Economy
             </h1>
-            <p className="text-neutral-600">
+            <p className="text-neutral-600 dark:text-neutral-300">
               Share resources with neighbors and build sustainable communities
             </p>
           </div>
@@ -346,51 +343,50 @@ const SharingEconomy = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
-      >
-        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+      >        <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200 dark:border-amber-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-amber-700">8</div>
-                <div className="text-sm text-amber-600">Items Shared</div>
+                <div className="text-2xl font-bold text-amber-700 dark:text-amber-400">8</div>
+                <div className="text-sm text-amber-600 dark:text-amber-400">Items Shared</div>
               </div>
-              <Package className="w-8 h-8 text-amber-600" />
+              <Package className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+        <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200 dark:border-green-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-green-700">15</div>
-                <div className="text-sm text-green-600">Items Borrowed</div>
+                <div className="text-2xl font-bold text-green-700 dark:text-green-400">15</div>
+                <div className="text-sm text-green-600 dark:text-green-400">Items Borrowed</div>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-600" />
+              <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+        <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-blue-700">4.8</div>
-                <div className="text-sm text-blue-600">Trust Rating</div>
+                <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">4.8</div>
+                <div className="text-sm text-blue-600 dark:text-blue-400">Trust Rating</div>
               </div>
-              <Star className="w-8 h-8 text-blue-600" />
+              <Star className="w-8 h-8 text-blue-600 dark:text-blue-400" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 border-purple-200 dark:border-purple-800">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-purple-700">3</div>
-                <div className="text-sm text-purple-600">Pending Requests</div>
+                <div className="text-2xl font-bold text-purple-700 dark:text-purple-400">3</div>
+                <div className="text-sm text-purple-600 dark:text-purple-400">Pending Requests</div>
               </div>
-              <Clock className="w-8 h-8 text-purple-600" />
+              <Clock className="w-8 h-8 text-purple-600 dark:text-purple-400" />
             </div>
           </CardContent>
         </Card>
@@ -477,11 +473,10 @@ const SharingEconomy = () => {
               transition={{ delay: 0.5 + index * 0.1 }}
             >
               <Card className="hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-0">
-                  <div className="aspect-video bg-neutral-200 rounded-t-lg"></div>
+                <CardContent className="p-0">                  <div className="aspect-video bg-neutral-200 dark:bg-neutral-700 rounded-t-lg"></div>
                   <div className="p-4">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-neutral-900 line-clamp-1">
+                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 line-clamp-1">
                         {item.name}
                       </h3>
                       <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600">
@@ -498,7 +493,7 @@ const SharingEconomy = () => {
                       </Badge>
                     </div>
                     
-                    <p className="text-sm text-neutral-600 mb-3 line-clamp-2">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-3 line-clamp-2">
                       {item.description}
                     </p>
                     
@@ -508,14 +503,14 @@ const SharingEconomy = () => {
                           {item.owner.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="text-sm text-neutral-600">{item.owner}</span>
-                      <div className="flex items-center gap-1 text-xs text-amber-600">
+                      <span className="text-sm text-neutral-600 dark:text-neutral-300">{item.owner}</span>
+                      <div className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400">
                         <Star className="w-3 h-3 fill-current" />
                         {item.ownerRating}
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-4 text-xs text-neutral-500 mb-4">
+                    <div className="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400 mb-4">
                       <div className="flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
                         {item.location}
@@ -527,7 +522,7 @@ const SharingEconomy = () => {
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <div className="text-lg font-semibold text-green-600">
+                      <div className="text-lg font-semibold text-green-600 dark:text-green-400">
                         {item.price}
                       </div>
                       <div className="flex gap-2">
