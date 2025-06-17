@@ -114,14 +114,13 @@ const Dashboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
-      >
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+      >        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             Welcome back, {user?.name || 'Eco Warrior'}! 🌱
           </h1>
           <div className="text-right">
-            <div className="text-sm text-neutral-500 dark:text-neutral-400">Today</div>
-            <div className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+            <div className="text-sm text-gray-500 dark:text-gray-400">Today</div>
+            <div className="text-lg font-semibold text-gray-900 dark:text-white">
               {new Date().toLocaleDateString('en-US', { 
                 weekday: 'long', 
                 month: 'short', 
@@ -130,7 +129,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <p className="text-neutral-600 dark:text-neutral-300">
+        <p className="text-gray-600 dark:text-gray-300">
           You're making a real impact! Keep up the great work building a sustainable future.
         </p>
       </motion.div>
@@ -212,7 +211,7 @@ const Dashboard = () => {
             transition={{ delay: 0.2 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
+                <CardTitle className="flex items-center text-gray-900 dark:text-white">
                   <Target className="w-5 h-5 mr-2" />
                   Quick Actions
                 </CardTitle>
@@ -226,21 +225,20 @@ const Dashboard = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
                     >
-                      <Link to={action.href}>                        <Card className="p-4 hover:shadow-lg transition-all duration-200 cursor-pointer group bg-white dark:bg-neutral-800">
+                      <Link to={action.href}>                        <Card className="p-4 hover:shadow-lg transition-all duration-200 cursor-pointer group bg-white dark:bg-gray-800">
                           <CardContent className="p-0">
                             <div className="flex items-start space-x-3">
                               <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${action.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
                                 {action.icon}
                               </div>
-                              <div className="flex-1">
-                                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                              <div className="flex-1">                                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                                   {action.title}
                                 </h3>
-                                <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
                                   {action.description}
                                 </p>
                               </div>
-                              <ArrowRight className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 group-hover:translate-x-1 transition-all" />
+                              <ArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all" />
                             </div>
                           </CardContent>
                         </Card>
@@ -259,7 +257,7 @@ const Dashboard = () => {
             transition={{ delay: 0.4 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="flex items-center justify-between text-neutral-900 dark:text-neutral-100">
+                <CardTitle className="flex items-center justify-between text-gray-900 dark:text-white">
                   <div className="flex items-center">
                     <Calendar className="w-5 h-5 mr-2" />
                     Recent Activity
@@ -276,14 +274,13 @@ const Dashboard = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                     >
                       {activity.icon}
-                      <div className="flex-1">
-                        <div className="font-medium text-neutral-900 dark:text-neutral-100">
+                      <div className="flex-1">                        <div className="font-medium text-gray-900 dark:text-white">
                           {activity.title}
                         </div>
-                        <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
                           {activity.time}
                         </div>
                       </div>
@@ -307,7 +304,7 @@ const Dashboard = () => {
             transition={{ delay: 0.6 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
+                <CardTitle className="flex items-center text-gray-900 dark:text-white">
                   <Award className="w-5 h-5 mr-2" />
                   Achievements
                 </CardTitle>
@@ -322,14 +319,14 @@ const Dashboard = () => {
                       transition={{ delay: 0.7 + index * 0.1 }}
                       className="space-y-2"
                     >                      <div className="flex items-center justify-between">
-                        <div className="font-medium text-neutral-900 dark:text-neutral-100">
+                        <div className="font-medium text-gray-900 dark:text-white">
                           {achievement.title}
                         </div>
                         {achievement.unlocked && (
                           <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
-                      <div className="text-sm text-neutral-600 dark:text-neutral-300">
+                      <div className="text-sm text-gray-600 dark:text-gray-300">
                         {achievement.description}
                       </div>
                       <Progress 

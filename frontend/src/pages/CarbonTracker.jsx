@@ -203,11 +203,10 @@ const CarbonTracker = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">          <div>            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Carbon Footprint Tracker
             </h1>
-            <p className="text-neutral-600 dark:text-neutral-300">
+            <p className="text-gray-600 dark:text-gray-300">
               Monitor and reduce your environmental impact daily
             </p>
           </div>
@@ -376,7 +375,7 @@ const CarbonTracker = () => {
             transition={{ delay: 0.2 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="text-neutral-900 dark:text-neutral-100">Weekly Carbon Footprint</CardTitle>
+                <CardTitle className="text-gray-900 dark:text-white">Weekly Carbon Footprint</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -412,7 +411,7 @@ const CarbonTracker = () => {
             transition={{ delay: 0.3 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="text-neutral-900 dark:text-neutral-100">Monthly Emission Trends</CardTitle>
+                <CardTitle className="text-gray-900 dark:text-white">Monthly Emission Trends</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -435,7 +434,7 @@ const CarbonTracker = () => {
             transition={{ delay: 0.4 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="text-neutral-900 dark:text-neutral-100">Emissions by Category</CardTitle>
+                <CardTitle className="text-gray-900 dark:text-white">Emissions by Category</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -471,7 +470,7 @@ const CarbonTracker = () => {
             transition={{ delay: 0.5 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
+                <CardTitle className="flex items-center text-gray-900 dark:text-white">
                   <Calendar className="w-5 h-5 mr-2" />
                   Recent Activities
                 </CardTitle>
@@ -484,16 +483,15 @@ const CarbonTracker = () => {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 + index * 0.1 }}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                     >
                       <div className={`p-2 rounded-lg bg-gradient-to-r ${activityTypes.find(t => t.value === activity.type)?.color || 'from-gray-400 to-gray-500'} text-white`}>
                         {activity.icon}
                       </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-neutral-900 dark:text-neutral-100">
+                      <div className="flex-1">                        <div className="font-medium text-gray-900 dark:text-white">
                           {activity.description}
                         </div>
-                        <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
                           {activity.date}
                         </div>
                       </div>
@@ -550,7 +548,7 @@ const CarbonTracker = () => {
             transition={{ delay: 0.8 }}
           >
             <Card>              <CardHeader>
-                <CardTitle className="flex items-center text-neutral-900 dark:text-neutral-100">
+                <CardTitle className="flex items-center text-gray-900 dark:text-white">
                   <TrendingDown className="w-5 h-5 mr-2" />
                   Recommendations
                 </CardTitle>
@@ -563,10 +561,10 @@ const CarbonTracker = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9 + index * 0.1 }}
-                      className="p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                      className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-medium text-neutral-900 dark:text-neutral-100">{rec.title}</h4>
+                        <h4 className="font-medium text-gray-900 dark:text-white">{rec.title}</h4>
                         <div className="flex gap-1">
                           <Badge 
                             variant="outline" 
@@ -576,7 +574,7 @@ const CarbonTracker = () => {
                           </Badge>
                         </div>
                       </div>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-2">{rec.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{rec.description}</p>
                       <div className="text-xs text-neutral-500 dark:text-neutral-400">
                         Difficulty: {rec.difficulty}
                       </div>

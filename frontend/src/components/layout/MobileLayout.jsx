@@ -31,11 +31,10 @@ const MobileLayout = () => {
     { name: 'Community', href: '/app/community', icon: Users },
     { name: 'Share', href: '/app/sharing', icon: Share2 },
   ];
-
   return (
-    <div className="flex flex-col h-screen bg-neutral-50">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       {/* Top bar */}
-      <header className="bg-white shadow-sm border-b border-neutral-200 px-4 py-3">
+      <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Leaf className="w-6 h-6 text-green-500 mr-2" />
@@ -62,10 +61,8 @@ const MobileLayout = () => {
       {/* Main content */}
       <main className="flex-1 overflow-x-hidden overflow-y-auto pb-16">
         <Outlet />
-      </main>
-
-      {/* Bottom navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 px-2 py-2">
+      </main>      {/* Bottom navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-2 py-2">
         <div className="flex items-center justify-around">
           {navigation.map((item) => {
             const isActive = location.pathname === item.href;
@@ -75,8 +72,8 @@ const MobileLayout = () => {
                 to={item.href}
                 className={`flex flex-col items-center justify-center px-3 py-2 rounded-lg transition-colors ${
                   isActive
-                    ? 'text-green-600 bg-green-50'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
+                    ? 'text-green-600 bg-green-50 dark:bg-green-900/20'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
                 <item.icon className="w-5 h-5 mb-1" />

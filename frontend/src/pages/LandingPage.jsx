@@ -95,60 +95,279 @@ const LandingPage = () => {
       rating: 5
     }
   ];
-
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-900 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       {/* Theme Toggle - Fixed Position */}
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-
+      
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-transparent flex items-center justify-center overflow-hidden">
-      <BackgroundGrid />
+      <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-green-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-green-900/20 flex items-center justify-center overflow-hidden">
+        <BackgroundGrid />
+        
+        {/* Floating Elements - Better mobile dark mode */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-4 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 bg-green-300/10 dark:bg-green-500/15 rounded-full blur-xl"
+            animate={{ 
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-32 sm:top-40 right-4 sm:right-20 w-20 h-20 sm:w-32 sm:h-32 bg-emerald-300/10 dark:bg-emerald-500/15 rounded-full blur-xl"
+            animate={{ 
+              y: [0, 20, 0],
+              scale: [1, 0.9, 1],
+            }}
+            transition={{ 
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute bottom-32 sm:bottom-40 left-4 sm:left-20 w-20 h-20 sm:w-24 sm:h-24 bg-green-400/10 dark:bg-green-600/15 rounded-full blur-xl"
+            animate={{ 
+              y: [0, -15, 0],
+              x: [0, 10, 0],
+            }}
+            transition={{ 
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+        </div>
 
         <div className="relative z-10 w-full">
-          <BackgroundBeamsWithCollision>
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-transparent">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="inline-flex items-center bg-green-100/80 backdrop-blur-sm dark:bg-green-900/80 text-green-800 dark:text-green-100 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-md">
-                  <Leaf className="w-4 h-4 mr-2" />
-                  Building Sustainable Communities Together
-                </div>
-                
-                
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
-                  Transform Your
-                  <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-                    {' '}Community
-                  </span>
-                  <br />
-                  Into a Sustainable Future
-                </h1>
-                
-                <p className="text-xl sm:text-2xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-3xl mx-auto">
-                  Join thousands of citizens making real environmental impact through smart waste management, 
-                  carbon tracking, community reporting, and resource sharing.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white border-0 px-8 py-4 text-lg">
-                    <Link to="/register">
-                      Start Your Journey <ArrowRight className="ml-2 w-5 h-5" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="border-neutral-700 dark:border-neutral-300 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-700 hover:text-white dark:hover:bg-neutral-200 dark:hover:text-neutral-800 px-8 py-4 text-lg">
-                    <Link to="/login">
-                      Sign In
-                    </Link>
-                  </Button>
-                </div>
-              </motion.div>
-            </div>          </BackgroundBeamsWithCollision>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-screen py-20 lg:py-0">
+              
+              {/* Left Column - Content */}
+              <div className="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-4 sm:space-y-6"
+                >                  {/* Badge */}
+                  <motion.div 
+                    className="inline-flex items-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-green-700 dark:text-green-300 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-sm border border-green-200/50 dark:border-green-600/50"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  >
+                    <Leaf className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1.5 sm:mr-2 text-green-600 dark:text-green-400" />
+                    Building Sustainable Communities
+                  </motion.div>
+                  
+                  {/* Main Heading - Better mobile dark mode */}
+                  <motion.h1 
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 dark:text-white px-2 sm:px-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                  >
+                    Transform Your Community Into a{" "}
+                    <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                      Sustainable Future
+                    </span>
+                  </motion.h1>
+                  
+                  {/* Description - Better mobile contrast */}
+                  <motion.p 
+                    className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed px-2 sm:px-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  >
+                    Join thousands making real environmental impact through smart waste management, 
+                    carbon tracking, and community collaboration.
+                  </motion.p>                  {/* CTA Buttons - Better mobile dark mode */}
+                  <motion.div 
+                    className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start px-2 sm:px-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.8 }}
+                  >
+                    <Button asChild size="lg" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white border-0 px-6 py-3 text-sm sm:text-base font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 w-full sm:w-auto">
+                      <Link to="/register">
+                        Start Your Journey <ArrowRight className="ml-2 w-4 h-4" />
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg" className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-6 py-3 text-sm sm:text-base font-medium w-full sm:w-auto">
+                      <Link to="/login">
+                        Sign In
+                      </Link>
+                    </Button>
+                  </motion.div>
+
+                  {/* Trust Indicators - Mobile dark mode friendly */}
+                  <motion.div 
+                    className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400 px-2 sm:px-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                  >
+                    <div className="flex items-center">
+                      <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5 text-green-500 dark:text-green-400" />
+                      Free to use
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5 text-green-500 dark:text-green-400" />
+                      No credit card
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5 text-green-500 dark:text-green-400" />
+                      2 min setup
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>              {/* Right Column - Visual Elements - Mobile Optimized */}
+              <div className="lg:col-span-5 relative mt-8 lg:mt-0 order-first lg:order-last">
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 1 }}
+                >
+                  {/* Main Circle - Responsive sizing */}
+                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto">
+                    {/* Background Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
+                      {/* Main Circle - Better mobile dark mode */}
+                    <div className="relative w-full h-full bg-gradient-to-br from-white/90 to-green-50/90 dark:from-gray-800/90 dark:to-green-900/30 rounded-full border border-green-200/50 dark:border-green-700/30 backdrop-blur-sm shadow-2xl flex items-center justify-center">
+                      
+                      {/* Feature Icons - Mobile responsive */}
+                      <motion.div
+                        className="absolute top-4 sm:top-8 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+                        animate={{ 
+                          y: [0, -10, 0],
+                          rotate: [0, 5, 0]
+                        }}
+                        transition={{ 
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      >
+                        <Recycle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </motion.div>
+
+                      <motion.div
+                        className="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg"
+                        animate={{ 
+                          x: [0, 10, 0],
+                          rotate: [0, -5, 0]
+                        }}
+                        transition={{ 
+                          duration: 5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 1
+                        }}
+                      >
+                        <BarChart3 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                      </motion.div>
+
+                      <motion.div
+                        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+                        animate={{ 
+                          y: [0, 10, 0],
+                          rotate: [0, -5, 0]
+                        }}
+                        transition={{ 
+                          duration: 6,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 2
+                        }}
+                      >
+                        <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </motion.div>
+
+                      <motion.div
+                        className="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg"
+                        animate={{ 
+                          x: [0, -10, 0],
+                          rotate: [0, 5, 0]
+                        }}
+                        transition={{ 
+                          duration: 4.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5
+                        }}
+                      >
+                        <Share2 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                      </motion.div>
+
+                      {/* Center Content */}
+                      <div className="text-center">
+                        <motion.div
+                          className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mb-3 sm:mb-4 shadow-xl mx-auto"
+                          animate={{ 
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 360]
+                          }}
+                          transition={{ 
+                            scale: {
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            },
+                            rotate: {
+                              duration: 20,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }
+                          }}
+                        >
+                          <Leaf className="w-10 h-10 text-white" />
+                        </motion.div>
+                        <p className="text-lg font-semibold text-green-700 dark:text-green-300">
+                          Ecofy Platform
+                        </p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          4 Tools, 1 Mission
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Stats */}
+                  <motion.div
+                    className="absolute -top-4 -right-4 bg-white dark:bg-neutral-800 rounded-xl p-3 shadow-lg border border-neutral-200 dark:border-neutral-700"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                  >
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">CO₂ Saved</div>
+                    <div className="text-lg font-bold text-green-600 dark:text-green-400">234.7T</div>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute -bottom-4 -left-4 bg-white dark:bg-neutral-800 rounded-xl p-3 shadow-lg border border-neutral-200 dark:border-neutral-700"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.4, duration: 0.8 }}
+                  >
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">Active Users</div>
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">12.5k+</div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -199,11 +199,10 @@ const CommunityIssues = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+          <div>            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Community Issues
             </h1>
-            <p className="text-neutral-600 dark:text-neutral-300">
+            <p className="text-gray-600 dark:text-gray-300">
               Report local problems and drive community-led solutions
             </p>
           </div>

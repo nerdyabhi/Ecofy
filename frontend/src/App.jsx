@@ -46,7 +46,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
